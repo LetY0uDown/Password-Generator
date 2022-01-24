@@ -1,0 +1,59 @@
+﻿<UserControl x:Class="Password_Generator.View.MainView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Password_Generator.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <StackPanel>
+
+        <Label Content="Password:" FontSize="40"
+               HorizontalAlignment="Center"/>
+        <TextBox Text="**********************" FontSize="42"
+                 Background="Transparent" BorderThickness="0"
+                 IsReadOnly="True"
+                 x:Name="LabelPassword" HorizontalAlignment="Center"/>
+
+        <Slider x:Name="PasswordLenght" 
+                Width="200" Margin="0 20 0 0"
+                Minimum="1" Maximum="25" 
+                IsSnapToTickEnabled="True"/>
+
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Center">
+
+            <Label Content="Password lenght:" Foreground="White"/>
+            <Label Content="{Binding ElementName=PasswordLenght, Path=Value}"
+                   Foreground="Lime"/>
+
+        </StackPanel>
+
+        <Button Content="Generate" Margin="0 40 0 0"
+                Width="200" Height="70"
+                Command="{Binding GenerateCommand}"
+                Style="{StaticResource GenerateButtonStyle}"/>
+
+        <StackPanel Orientation="Horizontal" Margin="0 30 0 0"
+                    HorizontalAlignment="Center">
+
+            <CheckBox x:Name="cboxBigChars" IsChecked="True"
+                      Content="Big Characters" Margin="10"
+                      Foreground="White"/>
+
+            <CheckBox x:Name="cboxSmallChars" IsChecked="True"
+                      Content="Small Charatcers" Margin="10"
+                      Foreground="White"/>
+
+            <CheckBox x:Name="cboxSymbols"
+                      Content="Special Symbols" Margin="10"
+                      Foreground="White"/>
+
+            <CheckBox x:Name="cboxNumbers"
+                      Content="Numbers" Margin="10"
+                      Foreground="White"/>
+
+        </StackPanel>
+
+    </StackPanel>
+</UserControl>

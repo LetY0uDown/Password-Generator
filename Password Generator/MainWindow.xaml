@@ -1,0 +1,51 @@
+﻿<Window x:Class="Password_Generator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModel="clr-namespace:Password_Generator.ViewModel"
+        xmlns:local="clr-namespace:Password_Generator"
+        mc:Ignorable="d"
+        Title="Random Passwords" 
+        Height="500" Width="800"
+        ResizeMode="NoResize" WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        Icon="Icons/PassGeneratorIcon.Ico">
+
+    <Window.DataContext>
+        <viewModel:MainViewModel/>
+    </Window.DataContext>
+
+    <Border BorderBrush="Black"
+            BorderThickness="2">
+        <Border.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FF065779"/>
+                <GradientStop Color="#FF0306B7" Offset="0.989"/>
+            </LinearGradientBrush>
+        </Border.Background>
+        <Grid>
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right" VerticalAlignment="Top">
+
+                <Button Content="_" Width="32" Height="32"
+                        Command="{Binding MinimizeCommand}"
+                        Style="{StaticResource StateButtonStyle}"/>
+
+                <Button Content="🞨" Width="32" Height="32"
+                        Command="{Binding ExitCommand}"
+                        Style="{StaticResource StateButtonStyle}"/>
+
+            </StackPanel>
+
+            <Button Content="⚙"
+                    Height="32" Width="32"
+                    HorizontalAlignment="Left" VerticalAlignment="Top"
+                    Command="{Binding ChangeViewCommand}"
+                    Style="{StaticResource StateButtonStyle}"/>
+
+            <ContentControl Content="{Binding CurrentView}"
+                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Grid>
+    </Border>
+</Window>

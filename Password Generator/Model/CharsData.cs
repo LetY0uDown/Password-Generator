@@ -7,4 +7,6 @@ public class CharsData
 
     public static string Numbers { get; set; } = "0123456789";
     public static string Symbols { get; set; } = "!@#$%^&*?_-.,<>";
+
+    public static string TargetWord { get; set; }
 }

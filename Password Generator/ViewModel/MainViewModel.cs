@@ -4,11 +4,9 @@ using Password_Generator.Core;
 using Password_Generator.Model;
 using Password_Generator.View;
 using System;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Windows;
 
-public class MainViewModel : INotifyPropertyChanged
+public class MainViewModel : ObservableObject
 {
     public MainViewModel()
     {
@@ -40,13 +38,24 @@ public class MainViewModel : INotifyPropertyChanged
                 return;
             }
 
+            Attempts++;
+
             var lenght = MainView.PasswordLenght.Value;
             var charsCount = AllowedChars.Length;
 
             for (int i = 0; i < lenght; i++)
                 Password += AllowedChars[Random.Next(0, charsCount)];
 
+            if (Password == CharsData.TargetWord)
+            {
+                Matches++;
+
+                MainView.labelMatches.Content = $"Attempts: {Attempts} | Matches: {Matches}";
+            }
+
+            MainView.labelMatches.Content = $"Attempts: {Attempts} | Matches: {Matches}";
             MainView.LabelPassword.Text = Password;
+
             AllowedChars = null;
             Password = null;
         });
@@ -56,8 +65,11 @@ public class MainViewModel : INotifyPropertyChanged
             CurrentView = CurrentView == MainView ? SettingsView : MainView;
         });
     }
-    public MainView MainView { get; set; }
-    public SettingsView SettingsView { get; set; }
+    private MainView MainView { get; set; }
+    private SettingsView SettingsView { get; set; }
+
+    private int Attempts { get; set; }
+    private int Matches { get; set; }
 
     private Random Random { get; set; }
 
@@ -74,17 +86,11 @@ public class MainViewModel : INotifyPropertyChanged
     private object _currentView;
     public object CurrentView
     {
-        get =>_currentView; 
-        set 
+        get => _currentView;
+        set
         {
             _currentView = value;
             OnPropertyChanged();
         }
-    }
-
-    public event PropertyChangedEventHandler? PropertyChanged;
-    public void OnPropertyChanged([CallerMemberName] string name = null)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
     }
 }

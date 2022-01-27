@@ -8,6 +8,9 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <StackPanel>
 
+        <Label Content="Всего: 0 | Совпало: 0" x:Name="labelMatches"
+               HorizontalAlignment="Center" FontSize="14"/>
+
         <Label Content="Password:" FontSize="40"
                HorizontalAlignment="Center"/>
         <TextBox Text="**********************" FontSize="42"

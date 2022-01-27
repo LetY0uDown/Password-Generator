@@ -19,9 +19,9 @@
     <Border BorderBrush="Black"
             BorderThickness="2">
         <Border.Background>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="#FF065779"/>
-                <GradientStop Color="#FF0306B7" Offset="0.989"/>
+            <LinearGradientBrush EndPoint="0.5, 1" StartPoint="0.5, 0">
+                <GradientStop Color="MediumOrchid"/>
+                <GradientStop Color="DarkMagenta" Offset="1"/>
             </LinearGradientBrush>
         </Border.Background>
         <Grid>
@@ -38,11 +38,20 @@
 
             </StackPanel>
 
-            <Button Content="⚙"
-                    Height="32" Width="32"
-                    HorizontalAlignment="Left" VerticalAlignment="Top"
-                    Command="{Binding ChangeViewCommand}"
-                    Style="{StaticResource StateButtonStyle}"/>
+            <StackPanel HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Orientation="Horizontal">
+
+                <Button Content="⚙"
+                        Height="32" Width="32"
+                        Command="{Binding ChangeViewCommand}"
+                        Style="{StaticResource StateButtonStyle}"/>
+
+                <!--<Button Content="🎯"
+                        Height="32" Width="32"
+                        Style="{StaticResource StateButtonStyle}"/>-->
+
+            </StackPanel>
 
             <ContentControl Content="{Binding CurrentView}"
                             HorizontalAlignment="Center" VerticalAlignment="Center"/>
